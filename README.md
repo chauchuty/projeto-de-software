@@ -2,4 +2,4 @@
 
 ##### [09/03/2022] 
 - Apresentação da equipe
-- Exposição de ideias sobre a disciplina de Projetos de Software
+- Exposição de referente a disciplina de Projetos de Software
