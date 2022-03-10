@@ -1,4 +1,5 @@
-# Projeto de Software
-### Gestão de Academia
+## Gestão de venda de veículos automotivos
 
-- [ ] Modelagem do Banco
+##### [09/03/2022] 
+- Apresentação da equipe
+- Exposição de ideias sobre a disciplina de Projetos de Software
