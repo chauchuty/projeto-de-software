@@ -1,4 +1,4 @@
-Passos Inicias para usar GitHub
+Passos Iniciais para usar GitHub
 
 [ 1 ] - Toda vez que abrir o projeto, ATUALIZE com o comando (git pull)
 [ 2 ] - Prepare os arquivos para o commit (git add .)
