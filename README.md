@@ -1,4 +1,4 @@
-## Gestão de venda de veículos automotivos
+## Gestão de Salão de Beleza
 
 ##### [09/03/2022] 
 - Apresentação da equipe
@@ -8,4 +8,6 @@
 ##### [10/03/2022] 
 - Avaliando tecnologias a serem usadas no projeto
 
-
+##### [13/03/2022]
+- Alteração da proposta do projeto.
+- Definição das tecnologias e dependências a serem usadas no projeto. (Flutter, Lumen e Mysql)
