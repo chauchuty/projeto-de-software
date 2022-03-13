@@ -6,6 +6,8 @@ Passos Inicias para usar GitHub
 [ 4 ] - Suba para o repositório (git push)
 
 Resumo comandos:
+git config --global user.name "<name>"
+git config --global user.email "<name>"
 git clone <repository>
 git pull
 git add .
