@@ -1,5 +1,11 @@
 ## Gestão de Salão de Beleza
 
+## Participante
+
+- Cesar - RA ()
+- Murilo - RA ()
+- Jucinaldo - RA(2296500)
+
 ##### [09/03/2022] 
 - Apresentação da equipe
 - Exposição de ideias referente a disciplina de Projetos de Software
