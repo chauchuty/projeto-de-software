@@ -2,9 +2,9 @@
 ## Universidade Tecnológica Federal do Parana (UTFPR)
 ## Participantes
 
-- Cesar - RA (2098270)
-- Murilo - RA ()
-- Jucinaldo - RA(2296500)
+- Cesar 
+- Murilo  
+- Jucinaldo 
 
 ##### [09/03/2022] 
 - Apresentação da equipe
