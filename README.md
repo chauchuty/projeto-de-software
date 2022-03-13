@@ -1,6 +1,6 @@
 ## Gestão de Salão de Beleza
 
-## Participante
+## Participantes
 
 - Cesar - RA ()
 - Murilo - RA ()
