@@ -16,6 +16,6 @@
 
 ##### [13/03/2022]
 - Alteração da proposta do projeto.
-- Definição das tecnologias e dependências a serem usadas no projeto. (Flutter, Lumen e Mysql)
+- Definição das tecnologias e dependências a serem usadas no projeto. (Flutter, Laravel e Mysql)
 - Protótipo do design da aplicação
 - Realizado breve esboço do protótipo, a ser discutido em grupo.
