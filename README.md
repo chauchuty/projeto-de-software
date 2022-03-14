@@ -18,3 +18,4 @@
 - Alteração da proposta do projeto.
 - Definição das tecnologias e dependências a serem usadas no projeto. (Flutter, Lumen e Mysql)
 - Protótipo do design da aplicação
+- Realizado breve esboço do protótipo, a ser discutido em grupo.
