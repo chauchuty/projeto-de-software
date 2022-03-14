@@ -10,21 +10,15 @@ class DrawerComponent extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text('Drawer Header'),
-          ),
           ListTile(
-            title: const Text('Item 1'),
+            title: const Text('Cadastro de Clientes'),
             onTap: () {
               // Update the state of the app.
               // ...
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            title: const Text('Cadastro de Produtos'),
             onTap: () {
               // Update the state of the app.
               // ...
