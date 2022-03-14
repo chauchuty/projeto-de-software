@@ -1,7 +1,7 @@
 ## Gestão de Salão de Beleza
 ## Universidade Tecnológica Federal do Parana (UTFPR)
-## Participantes
 
+#### Participantes
 - Cesar 
 - Murilo  
 - Jucinaldo 
