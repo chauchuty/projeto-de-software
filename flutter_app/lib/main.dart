@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/clientes.dart';
 import 'package:flutter_app/pages/home.dart';
+import 'package:flutter_app/pages/produtos.dart';
 
 void main() async {
   runApp(const App());
@@ -16,7 +18,12 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const HomePage(title: 'Gestão de Salão de Beleza'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(title: 'Gestão de Salão de Beleza'),
+        '/clientes': (context) => const ClientesPage(title: 'Clientes'),
+        '/produtos': (context) => const ProdutosPage(title: 'Produtos'),
+      },
       debugShowCheckedModeBanner: false,
     );
   }

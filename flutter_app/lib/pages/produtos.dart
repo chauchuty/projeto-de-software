@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/compoments/drawer.component.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class ProdutosPage extends StatefulWidget {
+  const ProdutosPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProdutosPage> createState() => _ProdutosPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProdutosPageState extends State<ProdutosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: const DrawerComponent(),
       body: const Center(
-        child: Text("Home Page"),
+        child: Text("Produtos"),
       ),
     );
   }

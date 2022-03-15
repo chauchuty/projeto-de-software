@@ -11,18 +11,28 @@ class DrawerComponent extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           ListTile(
-            title: const Text('Cadastro de Clientes'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
+            title: TextButton(
+              child: const Text('Home'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
           ),
           ListTile(
-            title: const Text('Cadastro de Produtos'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
+            title: TextButton(
+              child: const Text('Clientes'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/clientes');
+              },
+            ),
+          ),
+          ListTile(
+            title: TextButton(
+              child: const Text('Produtos'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/produtos');
+              },
+            ),
           ),
         ],
       ),
