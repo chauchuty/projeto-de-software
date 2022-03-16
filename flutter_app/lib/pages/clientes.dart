@@ -14,13 +14,33 @@ class _ClientesPageState extends State<ClientesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      drawer: const DrawerComponent(),
-      body: const Center(
-        child: Text("Clientes"),
-      ),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        drawer: const DrawerComponent(),
+        body: Center(
+          child: Column(
+            children: [
+              Row(
+                children: const <Widget>[
+                  Expanded(
+                    child: Text('Deliver features faster',
+                        textAlign: TextAlign.center),
+                  ),
+                  Expanded(
+                    child: Text('Craft beautiful UIs',
+                        textAlign: TextAlign.center),
+                  ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.contain, // otherwise the logo will be tiny
+                      child: FlutterLogo(),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }
