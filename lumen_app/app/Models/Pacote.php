@@ -13,7 +13,10 @@
             'fk_promocao'
         ];
 
-        protected $hidden = [];
+        protected $hidden = [
+            'created_at',
+            'updated_at'
+        ];
 
         // public static $rules = [
         //     "name" => "required|max:120",
