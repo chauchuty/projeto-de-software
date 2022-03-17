@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class PacoteController extends Controller
 {
     
-    public function showAllPacotes()
+    public function showAll()
     {
         return response()->json(Pacote::all());
     }
 
-    public function showOnePacote($id)
+    public function showOne($id)
     {
         return response()->json(Pacote::find($id));
     }

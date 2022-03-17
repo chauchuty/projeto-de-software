@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class ServicoController extends Controller
 {
     
-    public function showAllServicos()
+    public function showAll()
     {
         return response()->json(Servico::all());
     }
 
-    public function showOneServico($id)
+    public function showOne($id)
     {
         return response()->json(Servico::find($id));
     }

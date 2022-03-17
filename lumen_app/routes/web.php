@@ -20,15 +20,15 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api/v1/'], function () use ($router) {
     
     // Serviços
-    $router->get('servicos',         ['uses' => 'ServicoController@showAllServicos']);
-    $router->get('servicos/{id}',    ['uses' => 'ServicoController@showOneServico']);
+    $router->get('servicos',         ['uses' => 'ServicoController@showAll']);
+    $router->get('servicos/{id}',    ['uses' => 'ServicoController@showOne']);
     $router->post('servicos',        ['uses' => 'ServicoController@create']);
     $router->delete('servicos/{id}', ['uses' => 'ServicoController@delete']);
     $router->put('servicos/{id}',    ['uses' => 'ServicoController@update']);
     
     // Pacotes
-    $router->get('pacotes',         ['uses' => 'PacoteController@showAllpacotes']);
-    $router->get('pacotes/{id}',    ['uses' => 'PacoteController@showOnePacote']);
+    $router->get('pacotes',         ['uses' => 'PacoteController@showAll']);
+    $router->get('pacotes/{id}',    ['uses' => 'PacoteController@showOne']);
     $router->post('pacotes',        ['uses' => 'PacoteController@create']);
     $router->delete('pacotes/{id}', ['uses' => 'PacoteController@delete']);
     $router->put('pacotes/{id}',    ['uses' => 'PacoteController@update']);
