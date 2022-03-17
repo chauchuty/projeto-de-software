@@ -1,0 +1,37 @@
+Table servico as SER {
+  id int [pk, increment] // auto-increment
+  nome varchar [not null, unique]
+  descricao varchar
+  preco decimal [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
+
+Table pacote as PAC {
+  id integer [pk, increment]
+  nome varchar [not null, unique]
+  descricao varchar
+  fk_promocao integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
+
+Table pacote_servico as PAC {
+  id int [pk, increment]
+  fk_servico int [not null]
+  fk_pacote int [not null]
+}
+
+Table promocao as PRO {
+  id int [pk, increment]
+  nome varchar [not null, unique]
+  descricao varchar
+  desconto decimal [default: 0]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
+
+// References
+Ref: "pacote"."id" < "pacote_servico"."fk_pacote"
+Ref: "servico"."id" < "pacote_servico"."fk_servico"
+Ref: "promocao"."id" < "pacote"."fk_promocao"
