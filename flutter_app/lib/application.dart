@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom/themeData.custom.dart';
+import 'package:flutter_app/routes/routes.custom.dart';
 import 'package:flutter_app/widgets/scaffold.custom.dart';
 
 class Application extends StatelessWidget {
@@ -11,6 +12,8 @@ class Application extends StatelessWidget {
       title: 'Flutter App',
       home: const ScaffoldCustom(),
       theme: ThemeDataCustom.feature(),
+      initialRoute: RoutesCustom.initialRoute(),
+      routes: RoutesCustom.routes(context),
       debugShowCheckedModeBanner: false,
     );
   }

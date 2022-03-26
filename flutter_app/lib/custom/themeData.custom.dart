@@ -7,7 +7,7 @@ class ThemeDataCustom {
       appBarTheme: AppBarTheme(
         titleTextStyle: const TextStyle(
           fontFamily: 'Inspiration',
-          fontSize: 42,
+          fontSize: 40,
           color: Colors.white,
         ),
         backgroundColor: Colors.red[400],

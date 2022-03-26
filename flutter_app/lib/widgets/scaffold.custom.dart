@@ -1,8 +1,6 @@
-// ignore_for_file: dead_code
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/appbar.custom.dart';
-import 'package:flutter_app/widgets/menuBar.custom.dart';
+import 'package:flutter_app/pages/home.page.dart';
+import 'package:flutter_app/widgets/appBar.custom.dart';
 
 class ScaffoldCustom extends StatefulWidget {
   const ScaffoldCustom({Key? key}) : super(key: key);
@@ -12,19 +10,22 @@ class ScaffoldCustom extends StatefulWidget {
 }
 
 class _ScaffoldCustomState extends State<ScaffoldCustom> {
+  Widget page = const HomePage();
+
+  callback(Widget widget) {
+    setState(() {
+      page = widget;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBarCustom(),
+      appBar: PreferredSize(
+        preferredSize: const Size(0, 100),
+        child: AppBarCustom(callback: callback),
       ),
-      body: Column(
-        children: [
-          const MenuBar(),
-          Container(),
-        ],
-      ),
+      body: page,
     );
   }
 }

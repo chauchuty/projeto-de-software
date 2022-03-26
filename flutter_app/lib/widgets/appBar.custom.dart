@@ -1,41 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/agendamento.page.dart';
+import 'package:flutter_app/pages/clientes.page.dart';
+import 'package:flutter_app/pages/home.page.dart';
+import 'package:flutter_app/pages/pacotes.page.dart';
+import 'package:flutter_app/pages/relatorio.page.dart';
+import 'package:flutter_app/pages/servicos.page.dart';
 
 class AppBarCustom extends StatefulWidget {
-  const AppBarCustom({Key? key}) : super(key: key);
+  final Function callback;
+  const AppBarCustom({Key? key, required this.callback}) : super(key: key);
 
   @override
   _AppBarCustomState createState() => _AppBarCustomState();
 }
 
 class _AppBarCustomState extends State<AppBarCustom> {
+  Widget page = const HomePage();
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Padding(
-        padding: EdgeInsets.only(top: 10),
-        child: Center(
-          child: Text(
-            'Salão de Beleza',
-          ),
+      leading: _leading(),
+      title: _title('Salão de Beleza'),
+      actions: _actions(),
+      bottom: PreferredSize(
+        preferredSize: const Size(0, 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _item(Icons.home, const HomePage(), widget.callback),
+            _item(Icons.people, const ClientesPage(), widget.callback),
+            _item(Icons.event_note, const AgendamentoPage(), widget.callback),
+            _item(Icons.content_cut, const ServicosPage(), widget.callback),
+            _item(Icons.grid_view, const PacotesPage(), widget.callback),
+            _item(Icons.account_balance_wallet, const RelatorioPage(),
+                widget.callback),
+          ],
         ),
       ),
-      leading: const Padding(
-        padding: EdgeInsets.only(top: 10, left: 10),
-        child: CircleAvatar(
-          foregroundColor: Colors.white,
-          backgroundColor: Color.fromRGBO(255, 205, 210, 0.3),
-          child: Icon(
-            Icons.person,
-          ),
-        ),
+    );
+  }
+
+  _title(String title) {
+    return Center(
+      child: Text(title),
+    );
+  }
+
+  _leading() {
+    return IconButton(
+      onPressed: () {},
+      splashRadius: 20,
+      icon: const Icon(Icons.person),
+    );
+  }
+
+  _actions() {
+    return [
+      IconButton(
+        onPressed: () {},
+        splashRadius: 20,
+        icon: const Icon(Icons.more_vert),
       ),
-      actions: const [
-        Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: Icon(Icons.exit_to_app),
-        )
-      ],
-      shadowColor: Colors.transparent,
+    ];
+  }
+
+  _item(IconData icon, Widget widget, Function callback) {
+    return IconButton(
+      onPressed: () {
+        callback(widget);
+      },
+      splashRadius: 20,
+      icon: Icon(
+        icon,
+        color: Colors.white,
+      ),
     );
   }
 }
