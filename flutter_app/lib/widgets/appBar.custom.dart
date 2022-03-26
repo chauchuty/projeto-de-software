@@ -15,6 +15,8 @@ class AppBarCustom extends StatefulWidget {
 }
 
 class _AppBarCustomState extends State<AppBarCustom> {
+  int itemSelected = 0;
+
   Widget page = const HomePage();
 
   @override
@@ -28,12 +30,13 @@ class _AppBarCustomState extends State<AppBarCustom> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _item(Icons.home, const HomePage(), widget.callback),
-            _item(Icons.people, const ClientesPage(), widget.callback),
-            _item(Icons.event_note, const AgendamentoPage(), widget.callback),
-            _item(Icons.content_cut, const ServicosPage(), widget.callback),
-            _item(Icons.grid_view, const PacotesPage(), widget.callback),
-            _item(Icons.account_balance_wallet, const RelatorioPage(),
+            _item(Icons.home, const HomePage(), 0, widget.callback),
+            _item(Icons.people, const ClientesPage(), 1, widget.callback),
+            _item(
+                Icons.event_note, const AgendamentoPage(), 2, widget.callback),
+            _item(Icons.content_cut, const ServicosPage(), 3, widget.callback),
+            _item(Icons.grid_view, const PacotesPage(), 4, widget.callback),
+            _item(Icons.account_balance_wallet, const RelatorioPage(), 5,
                 widget.callback),
           ],
         ),
@@ -59,22 +62,26 @@ class _AppBarCustomState extends State<AppBarCustom> {
     return [
       IconButton(
         onPressed: () {},
-        splashRadius: 20,
         icon: const Icon(Icons.more_vert),
+        splashRadius: 20,
       ),
     ];
   }
 
-  _item(IconData icon, Widget widget, Function callback) {
+  _item(IconData icon, Widget widget, int index, Function callback) {
     return IconButton(
       onPressed: () {
+        setState(() {
+          itemSelected = index;
+        });
         callback(widget);
       },
-      splashRadius: 20,
       icon: Icon(
         icon,
-        color: Colors.white,
+        color: itemSelected == index ? Colors.grey[850] : Colors.white,
+        size: 20,
       ),
+      splashRadius: 20,
     );
   }
 }

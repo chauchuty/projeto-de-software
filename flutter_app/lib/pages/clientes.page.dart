@@ -10,6 +10,23 @@ class ClientesPage extends StatefulWidget {
 class _ClientesPageState extends State<ClientesPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Clientes Page');
+    return ListView(
+      children: [
+        _listTile(),
+      ],
+    );
+  }
+
+  _listTile() {
+    return Column(
+      children: const [
+        Card(
+          child: ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Cesar'),
+          ),
+        ),
+      ],
+    );
   }
 }
