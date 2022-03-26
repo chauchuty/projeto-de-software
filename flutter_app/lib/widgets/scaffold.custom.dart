@@ -10,11 +10,11 @@ class ScaffoldCustom extends StatefulWidget {
 }
 
 class _ScaffoldCustomState extends State<ScaffoldCustom> {
-  Widget page = const HomePage();
+  Widget _widget = const HomePage();
 
   callback(Widget widget) {
     setState(() {
-      page = widget;
+      _widget = widget;
     });
   }
 
@@ -25,7 +25,7 @@ class _ScaffoldCustomState extends State<ScaffoldCustom> {
         preferredSize: const Size(0, 100),
         child: AppBarCustom(callback: callback),
       ),
-      body: page,
+      body: _widget,
     );
   }
 }
