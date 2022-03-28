@@ -19,9 +19,9 @@ class ClienteRepository implements IClienteRepository {
   }
 
   @override
-  Future<Cliente?> getOne(int id) {
-    // TODO: implement getOne
-    throw UnimplementedError();
+  Future<Cliente?> getOne(int id) async {
+    var response = await Dio().get('http://localhost:3000/clientes/$id');
+    return Cliente.fromMap(response.data);
   }
 
   @override

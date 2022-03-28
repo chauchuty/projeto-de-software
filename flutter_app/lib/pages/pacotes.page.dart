@@ -10,6 +10,6 @@ class PacotesPage extends StatefulWidget {
 class _PacotesPageState extends State<PacotesPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Pacotes Page');
+    return const Text('Pacotes Page Achou!');
   }
 }
