@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/cliente.model.dart';
+import 'package:flutter_app/repositories/cliente.repository.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
@@ -8,17 +10,25 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
+  ClienteRepository repository = ClienteRepository();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          _listTile('Cesar'),
-          _listTile('Murilo'),
-          _listTile('Jucinaldo'),
-          _listTile('Marcos'),
-        ],
-      ),
+      body: FutureBuilder<List<Cliente>>(
+          future: repository.getAll(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    return _listTile(snapshot.data![index].nome);
+                  });
+            }
+            return const Center(
+              child: CircularProgressIndicator(color: Colors.red),
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.person_add),
@@ -27,29 +37,43 @@ class _ClientesPageState extends State<ClientesPage> {
     );
   }
 
+  _loading() {
+    return const Center(
+      child: CircularProgressIndicator(color: Colors.red),
+    );
+  }
+
+  _listView(AsyncSnapshot snapshot) {
+    return ListView.builder(
+        itemCount: snapshot.data?.length,
+        itemBuilder: (context, index) {
+          return _listTile(snapshot.data![index].nome);
+        });
+  }
+
   _listTile(String title) {
     return Card(
       child: ListTile(
         leading: const Icon(Icons.person),
         title: Text(title),
         trailing: Wrap(
-          spacing: -10,
+          spacing: -15,
           children: [
-            _iconButton(Icons.remove_red_eye, Colors.blue, _view),
-            _iconButton(Icons.edit, Colors.orange, _view),
-            _iconButton(Icons.delete, Colors.red, _view),
+            _iconButton(Icons.remove_red_eye, _view),
+            _iconButton(Icons.edit, _edit),
+            _iconButton(Icons.delete, _delete),
           ],
         ),
       ),
     );
   }
 
-  _iconButton(IconData icon, Color iconColor, callback) {
+  _iconButton(IconData icon, callback) {
     return IconButton(
       onPressed: () {
         callback(context);
       },
-      icon: Icon(icon, color: iconColor, size: 20),
+      icon: Icon(icon, size: 18),
       splashRadius: 15,
     );
   }
@@ -59,7 +83,27 @@ class _ClientesPageState extends State<ClientesPage> {
         context: context,
         builder: (context) {
           return const AlertDialog(
-            title: Text('Hello World'),
+            title: Text('Visualizar'),
+          );
+        });
+  }
+
+  _edit(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text('Editar'),
+          );
+        });
+  }
+
+  _delete(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text('Deletar'),
           );
         });
   }
