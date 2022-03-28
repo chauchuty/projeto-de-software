@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/cliente.model.dart';
 import 'package:flutter_app/repositories/cliente.repository.dart';
+import 'package:flutter_app/widgets/form.custom.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
@@ -19,25 +20,28 @@ class _ClientesPageState extends State<ClientesPage> {
           future: repository.getAll(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (context, index) {
-                    return _listTile(snapshot.data![index].nome);
-                  });
+              return _listView(snapshot);
             }
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.red),
-            );
+            return _circularProgressIndicator();
           }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.person_add),
-        backgroundColor: Colors.red[400],
-      ),
+      floatingActionButton: _create(context),
     );
   }
 
-  _loading() {
+  _create(context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const FormCustom()),
+        );
+      },
+      child: const Icon(Icons.person_add),
+      backgroundColor: Colors.red[400],
+    );
+  }
+
+  _circularProgressIndicator() {
     return const Center(
       child: CircularProgressIndicator(color: Colors.red),
     );
@@ -71,22 +75,14 @@ class _ClientesPageState extends State<ClientesPage> {
   _iconButton(IconData icon, callback) {
     return IconButton(
       onPressed: () {
-        callback(context);
+        callback();
       },
       icon: Icon(icon, size: 18),
       splashRadius: 15,
     );
   }
 
-  _view(context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            title: Text('Visualizar'),
-          );
-        });
-  }
+  _view(context) {}
 
   _edit(context) {
     showDialog(

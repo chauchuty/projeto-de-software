@@ -12,6 +12,9 @@ class ThemeDataCustom {
         ),
         backgroundColor: Colors.red[400],
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(primary: Colors.red[400]),
+      ),
     );
   }
 }
