@@ -1,14 +1,14 @@
-class Cliente {
+class Servico {
   int? id;
   String nome;
-  String? telefone;
-  String? email;
+  double valor;
+  String? descricao;
 
-  Cliente({
+  Servico({
     this.id,
     required this.nome,
-    this.telefone,
-    this.email,
+    required this.valor,
+    this.descricao,
   });
 
   void propDynamic(String key, dynamic value) {
@@ -19,11 +19,11 @@ class Cliente {
       case 'nome':
         nome = value;
         break;
-      case 'telefone':
-        telefone = value;
+      case 'valor':
+        valor = value;
         break;
-      case 'email':
-        email = value;
+      case 'descricao':
+        descricao = value;
         break;
       default:
     }
@@ -36,22 +36,20 @@ class Cliente {
       result.addAll({'id': id});
     }
     result.addAll({'nome': nome});
-    if (telefone != null) {
-      result.addAll({'telefone': telefone});
-    }
-    if (email != null) {
-      result.addAll({'email': email});
+    result.addAll({'valor': valor});
+    if (descricao != null) {
+      result.addAll({'descricao': descricao});
     }
 
     return result;
   }
 
-  factory Cliente.fromMap(Map<String, dynamic> map) {
-    return Cliente(
+  factory Servico.fromMap(Map<String, dynamic> map) {
+    return Servico(
       id: map['id']?.toInt(),
       nome: map['nome'] ?? '',
-      telefone: map['telefone'],
-      email: map['email'],
+      valor: map['valor']?.toDouble() ?? 0.0,
+      descricao: map['descricao'],
     );
   }
 }

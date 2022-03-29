@@ -1,0 +1,30 @@
+{
+  "clientes": [
+    {
+      "nome": "cesar",
+      "telefone": "42 9 9999 9999",
+      "email": "cesar@gmail.com",
+      "id": 1
+    },
+    {
+      "nome": "joao",
+      "telefone": "33 3 3232 3223",
+      "email": "joao2gmail.com",
+      "id": 2
+    }
+  ],
+  "servicos": [
+    {
+      "nome": "Corte Curto",
+      "valor": 75.55,
+      "descricao": "Corte especializado.",
+      "id": 1
+    },
+    {
+      "nome": "Corte Comprido",
+      "valor": 22.22,
+      "descricao": "",
+      "id": 2
+    }
+  ]
+}

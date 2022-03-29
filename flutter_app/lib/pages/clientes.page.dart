@@ -46,7 +46,7 @@ class _ClientesPageState extends State<ClientesPage> {
         trailing: Wrap(
           children: [
             _iconButton(context, Icons.remove_red_eye, _view, id),
-            _iconButton(context, Icons.edit, _edit, id),
+            _iconButton(context, Icons.edit, _update, id),
             _iconButton(context, Icons.delete, _delete, id),
           ],
         ),
@@ -64,26 +64,32 @@ class _ClientesPageState extends State<ClientesPage> {
     );
   }
 
-  // CRUD
+  // Form, Create, View, Edit, Delete
 
   _form() {
     List<Map> dataField = [
       {
         'label': 'Nome',
+        'name': 'nome',
         'icon': Icons.person,
         'type': 'string',
+        'opcional': false,
         'controller': TextEditingController(),
       },
       {
         'label': 'Telefone',
+        'name': 'telefone',
         'icon': Icons.phone,
         'type': 'phone',
+        'opcional': true,
         'controller': TextEditingController()
       },
       {
         'label': 'Email',
+        'name': 'email',
         'icon': Icons.email,
         'type': 'email',
+        'opcional': true,
         'controller': TextEditingController()
       }
     ];
@@ -92,6 +98,7 @@ class _ClientesPageState extends State<ClientesPage> {
       title: 'Novo Cliente',
       dataField: dataField,
       repository: ClienteRepository(),
+      instance: Cliente(nome: ''),
     );
   }
 
@@ -108,50 +115,14 @@ class _ClientesPageState extends State<ClientesPage> {
   }
 
   _view(context, int id) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return FutureBuilder<Cliente?>(
-            future: repository.getOne(id),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                return AlertDialog(
-                  title:
-                      Text("${snapshot.data!.nome} (id: ${snapshot.data!.id})"),
-                  content: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Text("Telefone: ${snapshot.data!.telefone}"),
-                        const SizedBox(height: 20),
-                        Text("Email: ${snapshot.data!.telefone}"),
-                      ],
-                    ),
-                  ),
-                );
-              }
-              return Utility.circularProgressIndicator();
-            }),
-          );
-        });
+    // view
   }
 
-  _edit(context, int id) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            title: Text('Editar'),
-          );
-        });
+  _update(context, int id) {
+    // update
   }
 
   _delete(context, int id) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const AlertDialog(
-            title: Text('Deletar'),
-          );
-        });
+    // Delete
   }
 }

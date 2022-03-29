@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/cliente.model.dart';
-import 'package:flutter_app/repositories/cliente.repository.dart';
 import 'package:flutter_app/utilities/utility.dart';
 
 class FormCustom extends StatefulWidget {
   final String title;
   final dynamic dataField;
   final dynamic repository;
+  final dynamic instance;
   const FormCustom({
     Key? key,
     required this.title,
     required this.dataField,
     required this.repository,
+    required this.instance,
   }) : super(key: key);
 
   @override
@@ -40,7 +40,9 @@ class _FormCustomState extends State<FormCustom> {
       padding: const EdgeInsets.all(20.0),
       child: Form(
         key: _formKey,
-        child: Column(children: [...dataField, _buttonSubmit(context)]),
+        child: Column(
+          children: [...dataField, _buttonSubmit(context)],
+        ),
       ),
     );
   }
@@ -56,7 +58,7 @@ class _FormCustomState extends State<FormCustom> {
           labelText: df['label'],
         ),
         validator: (value) {
-          return Utility.validator(value, df['type']);
+          return Utility.validator(value, df['type'], df['opcional']);
         },
       ),
     );
@@ -73,13 +75,23 @@ class _FormCustomState extends State<FormCustom> {
                 content: Text('Cadastrando...'),
               ),
             );
-            // Continuar
-            // widget.repository.insert(
-            //   Cliente(
-            //       nome: _controllerNome.text,
-            //       telefone: _controllerTelefone.text,
-            //       email: _controllerEmail.text),
-            // );
+
+            widget.dataField.forEach((e) {
+              print(e['type']);
+              print(e['name']);
+              print(e['controller'].text);
+
+              if (e['type'] == 'number') {
+                widget.instance.propDynamic(
+                    e['name'], double.tryParse(e['controller'].text));
+              } else {
+                widget.instance.propDynamic(e['name'], e['controller'].text) ??
+                    '';
+              }
+            });
+
+            widget.repository.insert(widget.instance);
+
             FocusManager.instance.primaryFocus?.unfocus();
           }
         },
