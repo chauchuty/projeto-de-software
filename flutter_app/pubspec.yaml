@@ -80,6 +80,9 @@ flutter:
     - family: Inspiration
       fonts:
       - asset: assets/fonts/Inspiration-Regular.ttf
+    - family: Oswald
+      fonts:
+      - asset: assets/fonts/Oswald-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

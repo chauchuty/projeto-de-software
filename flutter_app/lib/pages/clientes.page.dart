@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/cliente.model.dart';
 import 'package:flutter_app/repositories/cliente.repository.dart';
+import 'package:flutter_app/utilities/utility.dart';
 import 'package:flutter_app/widgets/form.custom.dart';
 
 class ClientesPage extends StatefulWidget {
@@ -22,15 +23,9 @@ class _ClientesPageState extends State<ClientesPage> {
             if (snapshot.hasData) {
               return _listView(snapshot);
             }
-            return _circularProgressIndicator();
+            return Utility.circularProgressIndicator();
           }),
       floatingActionButton: _create(context),
-    );
-  }
-
-  _circularProgressIndicator() {
-    return const Center(
-      child: CircularProgressIndicator(color: Colors.red),
     );
   }
 
@@ -49,7 +44,6 @@ class _ClientesPageState extends State<ClientesPage> {
         leading: const Icon(Icons.person),
         title: Text(title),
         trailing: Wrap(
-          spacing: -15,
           children: [
             _iconButton(context, Icons.remove_red_eye, _view, id),
             _iconButton(context, Icons.edit, _edit, id),
@@ -65,8 +59,8 @@ class _ClientesPageState extends State<ClientesPage> {
       onPressed: () {
         callback(context, id);
       },
-      icon: Icon(icon, size: 18),
-      splashRadius: 15,
+      icon: Icon(icon, size: 20),
+      splashRadius: 18,
     );
   }
 
@@ -75,11 +69,11 @@ class _ClientesPageState extends State<ClientesPage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const FormCustom()),
+          MaterialPageRoute(
+              builder: (context) => const FormCustom(title: 'Novo Cliente')),
         );
       },
       child: const Icon(Icons.person_add),
-      backgroundColor: Colors.red[400],
     );
   }
 
@@ -105,7 +99,7 @@ class _ClientesPageState extends State<ClientesPage> {
                   ),
                 );
               }
-              return _circularProgressIndicator();
+              return Utility.circularProgressIndicator();
             }),
           );
         });

@@ -25,9 +25,16 @@ class ClienteRepository implements IClienteRepository {
   }
 
   @override
-  Future<void> insert(Cliente cliente) {
-    // TODO: implement insert
-    throw UnimplementedError();
+  Future<Cliente> insert(Cliente cliente) async {
+    var response = await Dio().post(
+      'http://localhost:3000/clientes/',
+      data: {
+        'nome': cliente.nome,
+        'telefone': cliente.telefone,
+        'email': cliente.email
+      },
+    );
+    return Cliente.fromMap(response.data);
   }
 
   @override

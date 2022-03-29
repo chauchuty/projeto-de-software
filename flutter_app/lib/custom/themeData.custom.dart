@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 class ThemeDataCustom {
   static feature() {
     return ThemeData(
-      scaffoldBackgroundColor: Colors.grey[100],
-      appBarTheme: AppBarTheme(
-        titleTextStyle: const TextStyle(
-          fontFamily: 'Inspiration',
-          fontSize: 40,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.red[400],
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(primary: Colors.red[400]),
+      colorScheme: const ColorScheme(
+        brightness: Brightness.light,
+        primary: Colors.redAccent,
+        onPrimary: Colors.white,
+        secondary: Colors.redAccent,
+        onSecondary: Colors.white,
+        error: Colors.brown,
+        onError: Colors.purple,
+        background: Colors.redAccent,
+        onBackground: Colors.redAccent,
+        surface: Colors.redAccent,
+        onSurface: Colors.redAccent,
       ),
     );
   }

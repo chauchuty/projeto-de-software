@@ -9,7 +9,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Hair Salon',
       home: const ScaffoldCustom(),
       theme: ThemeDataCustom.feature(),
       initialRoute: RoutesCustom.initialRoute(),

@@ -1,24 +1,29 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:flutter_app/models/cliente.model.dart';
+import 'package:flutter_app/repositories/cliente.repository.dart';
+import 'package:flutter_app/utilities/utility.dart';
 
 class FormCustom extends StatefulWidget {
-  const FormCustom({Key? key}) : super(key: key);
+  final String title;
+  const FormCustom({Key? key, required this.title}) : super(key: key);
 
   @override
   _FormCustomState createState() => _FormCustomState();
 }
 
 class _FormCustomState extends State<FormCustom> {
+  ClienteRepository repository = ClienteRepository();
   final _formKey = GlobalKey<FormState>();
+  final _controllerNome = TextEditingController();
+  final _controllerTelefone = TextEditingController();
+  final _controllerEmail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Novo Cliente'),
+        title: Text(widget.title),
       ),
       body: _form(context),
     );
@@ -31,10 +36,9 @@ class _FormCustomState extends State<FormCustom> {
         key: _formKey,
         child: Column(
           children: [
-            // _textField('Nome', Icons.person, 'string'),
-            // _textField('Data', Icons.date_range, 'date'),
-            _textField('Telefone', Icons.phone, 'phone'),
-            _textField('Email', Icons.email, 'email'),
+            _textField('Nome', Icons.person, 'string', _controllerNome),
+            _textField('Telefone', Icons.phone, 'phone', _controllerTelefone),
+            _textField('Email', Icons.email, 'email', _controllerEmail),
             _buttonSubmit(context)
           ],
         ),
@@ -42,86 +46,40 @@ class _FormCustomState extends State<FormCustom> {
     );
   }
 
-  _textField(String title, IconData icon, String type) {
-    return TextFormField(
-      inputFormatters: [_mask(type)],
-      decoration: InputDecoration(
-        icon: Icon(icon),
-        labelText: title,
+  _textField(String title, IconData icon, String type,
+      TextEditingController controller) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        controller: controller,
+        inputFormatters: [Utility.mask(type)],
+        decoration: InputDecoration(
+          icon: Icon(icon),
+          labelText: title,
+        ),
+        validator: (value) {
+          return Utility.validator(value, type);
+        },
       ),
-      validator: (value) {
-        return _validator(value, type);
-      },
     );
-  }
-
-  _mask(String type) {
-    var rules = <String, dynamic>{
-      'string': {
-        'mask': '#############################',
-        'filter': RegExp(r"[A-Za-z ]"),
-      },
-      'date': {
-        'mask': '##/##/####',
-        'filter': RegExp(r"[0-9]"),
-      },
-      'phone': {
-        'mask': '## # #### ####',
-        'filter': RegExp(r"[0-9]"),
-      },
-      'email': {
-        'mask': '##############################',
-        'filter': RegExp(r"[a-z0-9@.]"),
-      }
-    };
-
-    return MaskTextInputFormatter(
-        mask: rules[type]!['mask'],
-        filter: {"#": rules[type]!['filter']},
-        type: MaskAutoCompletionType.lazy);
-  }
-
-  _validator(value, type) {
-    // recebe valor e o *tipo*
-    var rules = <String, dynamic>{
-      'date': {
-        'regex': r'(^(?:[+0]9)?[0-9]{10,12}$)',
-      },
-      'phone': {
-        'regex': r'(^(?:[+0]9)?[0-9]{10,12}$)',
-      },
-      'email': {
-        'regex':
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-      }
-    };
-
-    if (value == null || value.isEmpty) {
-      return 'Por favor, preencher';
-    }
-
-    // if (!RegExp(rules[type]['regex']).hasMatch(value)) {
-    //   return 'Campo Inválido!';
-    // }
-
-    // // Email
-    // if (type == 'email' && !value.contains("@")) {
-    //   return 'Email inválido!';
-    // }
-
-    return null;
   }
 
   _buttonSubmit(context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: ElevatedButton.icon(
+      padding: const EdgeInsets.only(top: 30),
+      child: TextButton.icon(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Cadastrando...'),
               ),
+            );
+            repository.insert(
+              Cliente(
+                  nome: _controllerNome.text,
+                  telefone: _controllerTelefone.text,
+                  email: _controllerEmail.text),
             );
             FocusManager.instance.primaryFocus?.unfocus();
           }

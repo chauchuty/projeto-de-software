@@ -15,6 +15,7 @@ class AppBarCustom extends StatefulWidget {
 }
 
 class _AppBarCustomState extends State<AppBarCustom> {
+  final String title = 'Hair Salon';
   int itemSelected = 0;
 
   Widget page = const HomePage();
@@ -23,22 +24,26 @@ class _AppBarCustomState extends State<AppBarCustom> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: _leading(),
-      title: _title('Salão de Beleza'),
+      title: _title(title),
       actions: _actions(),
       bottom: PreferredSize(
-        preferredSize: const Size(0, 30),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _item(Icons.home, const HomePage(), 0, widget.callback),
-            _item(Icons.people, const ClientesPage(), 1, widget.callback),
-            _item(
-                Icons.event_note, const AgendamentoPage(), 2, widget.callback),
-            _item(Icons.content_cut, const ServicosPage(), 3, widget.callback),
-            _item(Icons.grid_view, const PacotesPage(), 4, widget.callback),
-            _item(Icons.account_balance_wallet, const RelatorioPage(), 5,
-                widget.callback),
-          ],
+        preferredSize: const Size(0, 0),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Wrap(
+            spacing: 10,
+            children: [
+              _item(Icons.home, const HomePage(), 0, widget.callback),
+              _item(Icons.people, const ClientesPage(), 1, widget.callback),
+              _item(Icons.event_note, const AgendamentoPage(), 2,
+                  widget.callback),
+              _item(
+                  Icons.content_cut, const ServicosPage(), 3, widget.callback),
+              _item(Icons.grid_view, const PacotesPage(), 4, widget.callback),
+              _item(Icons.account_balance_wallet, const RelatorioPage(), 5,
+                  widget.callback),
+            ],
+          ),
         ),
       ),
     );
@@ -60,10 +65,13 @@ class _AppBarCustomState extends State<AppBarCustom> {
 
   _actions() {
     return [
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.more_vert),
-        splashRadius: 20,
+      Padding(
+        padding: const EdgeInsets.only(right: 5),
+        child: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.more_vert),
+          splashRadius: 20,
+        ),
       ),
     ];
   }
@@ -79,7 +87,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
       icon: Icon(
         icon,
         color: itemSelected == index ? Colors.grey[850] : Colors.white,
-        size: 20,
+        size: 24,
       ),
       splashRadius: 20,
     );
