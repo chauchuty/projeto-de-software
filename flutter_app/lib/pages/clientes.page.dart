@@ -64,13 +64,43 @@ class _ClientesPageState extends State<ClientesPage> {
     );
   }
 
+  // CRUD
+
+  _form() {
+    List<Map> dataField = [
+      {
+        'label': 'Nome',
+        'icon': Icons.person,
+        'type': 'string',
+        'controller': TextEditingController(),
+      },
+      {
+        'label': 'Telefone',
+        'icon': Icons.phone,
+        'type': 'phone',
+        'controller': TextEditingController()
+      },
+      {
+        'label': 'Email',
+        'icon': Icons.email,
+        'type': 'email',
+        'controller': TextEditingController()
+      }
+    ];
+
+    return FormCustom(
+      title: 'Novo Cliente',
+      dataField: dataField,
+      repository: ClienteRepository(),
+    );
+  }
+
   _create(context) {
     return FloatingActionButton(
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => const FormCustom(title: 'Novo Cliente')),
+          MaterialPageRoute(builder: (context) => _form()),
         );
       },
       child: const Icon(Icons.person_add),

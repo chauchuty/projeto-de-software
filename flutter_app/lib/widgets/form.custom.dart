@@ -5,18 +5,21 @@ import 'package:flutter_app/utilities/utility.dart';
 
 class FormCustom extends StatefulWidget {
   final String title;
-  const FormCustom({Key? key, required this.title}) : super(key: key);
+  final dynamic dataField;
+  final dynamic repository;
+  const FormCustom({
+    Key? key,
+    required this.title,
+    required this.dataField,
+    required this.repository,
+  }) : super(key: key);
 
   @override
   _FormCustomState createState() => _FormCustomState();
 }
 
 class _FormCustomState extends State<FormCustom> {
-  ClienteRepository repository = ClienteRepository();
   final _formKey = GlobalKey<FormState>();
-  final _controllerNome = TextEditingController();
-  final _controllerTelefone = TextEditingController();
-  final _controllerEmail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,35 +33,30 @@ class _FormCustomState extends State<FormCustom> {
   }
 
   _form(BuildContext context) {
+    var dataField =
+        (widget.dataField as List).map((df) => _textField(df)).toList();
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Form(
         key: _formKey,
-        child: Column(
-          children: [
-            _textField('Nome', Icons.person, 'string', _controllerNome),
-            _textField('Telefone', Icons.phone, 'phone', _controllerTelefone),
-            _textField('Email', Icons.email, 'email', _controllerEmail),
-            _buttonSubmit(context)
-          ],
-        ),
+        child: Column(children: [...dataField, _buttonSubmit(context)]),
       ),
     );
   }
 
-  _textField(String title, IconData icon, String type,
-      TextEditingController controller) {
+  _textField(df) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        controller: controller,
-        inputFormatters: [Utility.mask(type)],
+        controller: df['controller'],
+        inputFormatters: [Utility.mask(df['type'])],
         decoration: InputDecoration(
-          icon: Icon(icon),
-          labelText: title,
+          icon: Icon(df['icon']),
+          labelText: df['label'],
         ),
         validator: (value) {
-          return Utility.validator(value, type);
+          return Utility.validator(value, df['type']);
         },
       ),
     );
@@ -75,12 +73,13 @@ class _FormCustomState extends State<FormCustom> {
                 content: Text('Cadastrando...'),
               ),
             );
-            repository.insert(
-              Cliente(
-                  nome: _controllerNome.text,
-                  telefone: _controllerTelefone.text,
-                  email: _controllerEmail.text),
-            );
+            // Continuar
+            // widget.repository.insert(
+            //   Cliente(
+            //       nome: _controllerNome.text,
+            //       telefone: _controllerTelefone.text,
+            //       email: _controllerEmail.text),
+            // );
             FocusManager.instance.primaryFocus?.unfocus();
           }
         },
