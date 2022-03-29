@@ -97,8 +97,9 @@ class _ClientesPageState extends State<ClientesPage> {
                   content: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Text('Telefone: ' + snapshot.data!.telefone.toString()),
-                        Text('Email: ' + snapshot.data!.email.toString()),
+                        Text("Telefone: ${snapshot.data!.telefone}"),
+                        const SizedBox(height: 20),
+                        Text("Email: ${snapshot.data!.telefone}"),
                       ],
                     ),
                   ),
