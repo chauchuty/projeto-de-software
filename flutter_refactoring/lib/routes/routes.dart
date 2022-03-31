@@ -16,7 +16,7 @@ class RoutesCustom {
       '/profile': (context) => const ProfilePage(),
       '/home': (context) => const HomePage(),
       '/agendamento': (context) => const AgendamentoPage(),
-      '/clientes': (context) => const ClientesPage(),
+      '/clientes': (context) => ClientesPage(),
       '/servicos': (context) => const ServicosPage(),
       '/pacotes': (context) => const PacotesPage(),
       '/financeiro': (context) => const FinanceiroPage(),
