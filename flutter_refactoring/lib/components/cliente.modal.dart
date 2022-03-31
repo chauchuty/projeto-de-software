@@ -78,10 +78,19 @@ class ClienteModal extends StatelessWidget {
   _save() {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
-      child: ElevatedButton.icon(
-        onPressed: () {},
-        icon: const Icon(Icons.save),
-        label: Text('Salvar'),
+      child: Wrap(
+        spacing: 20,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(primary: Colors.blue),
+              icon: const Icon(Icons.save),
+              label: const Text('Salvar'),
+            ),
+          ),
+        ],
       ),
     );
   }

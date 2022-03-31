@@ -63,7 +63,22 @@ class ClientesPage extends StatelessWidget {
                 icon: const Icon(Icons.edit),
                 splashRadius: 20),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                        content: Wrap(
+                      spacing: 10,
+                      children: [
+                        const Icon(Icons.person),
+                        const Text('Deletar'),
+                        Text(cliente.nome),
+                      ],
+                    ));
+                  },
+                );
+              },
               icon: const Icon(Icons.delete),
               splashRadius: 20,
             ),
