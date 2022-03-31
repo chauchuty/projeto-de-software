@@ -50,38 +50,7 @@ class ClientesPage extends StatelessWidget {
         subtitle: Text(cliente.email),
         trailing: Wrap(
           children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ClienteModal(cliente: cliente, editMode: true),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.edit),
-                splashRadius: 20),
-            IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                        content: Wrap(
-                      spacing: 10,
-                      children: [
-                        const Icon(Icons.person),
-                        const Text('Deletar'),
-                        Text(cliente.nome),
-                      ],
-                    ));
-                  },
-                );
-              },
-              icon: const Icon(Icons.delete),
-              splashRadius: 20,
-            ),
+            _actions(context, cliente),
           ],
         ),
       ),
@@ -96,4 +65,57 @@ class ClientesPage extends StatelessWidget {
       child: const Icon(Icons.person_add),
     );
   }
+
+  _actions(context, Cliente cliente) {
+    return IconButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  ClienteModal(cliente: cliente, editMode: true),
+            ),
+          );
+        },
+        icon: const Icon(Icons.edit),
+        splashRadius: 20);
+  }
+
+  // _delete(context, Cliente cliente) {
+  //   IconButton(
+  //     onPressed: () {
+  //       showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return AlertDialog(
+  //             title: Text('Usuário: ${cliente.nome} (${cliente.id})'),
+  //             content: Wrap(
+  //               children: [
+  //                 Wrap(
+  //                   spacing: 10,
+  //                   children: [
+  //                     Icon(Icons.delete),
+  //                     Text('Deseja realmente deleta?'),
+  //                   ],
+  //                 ),
+  //               ],
+  //             ),
+  //             actions: [
+  //               ElevatedButton(
+  //                 onPressed: () {},
+  //                 child: Text('Cancelar'),
+  //               ),
+  //               ElevatedButton(
+  //                 onPressed: () {},
+  //                 child: Text('Deletar'),
+  //               ),
+  //             ],
+  //           );
+  //         },
+  //       );
+  //     },
+  //     icon: const Icon(Icons.delete),
+  //     splashRadius: 20,
+  //   );
+
 }

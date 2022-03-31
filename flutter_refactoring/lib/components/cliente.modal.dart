@@ -20,7 +20,7 @@ class ClienteModal extends StatelessWidget {
     );
   }
 
-  _body(container) {
+  _body(context) {
     return Form(
       child: Padding(
         padding: const EdgeInsets.only(right: 20, left: 20),
@@ -51,7 +51,7 @@ class ClienteModal extends StatelessWidget {
               icon: Icons.email,
               value: cliente.email,
             ),
-            editMode ? _save() : const SizedBox()
+            editMode ? _actions(context) : const SizedBox()
           ],
         ),
       ),
@@ -75,14 +75,23 @@ class ClienteModal extends StatelessWidget {
     );
   }
 
-  _save() {
+  _actions(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
-      child: Wrap(
-        spacing: 20,
+      child: Row(
         children: [
+          Expanded(
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(primary: Colors.red),
+              icon: const Icon(Icons.delete),
+              label: const Text('Deletar'),
+            ),
+          ),
           SizedBox(
-            width: double.infinity,
+            width: 10,
+          ),
+          Expanded(
             child: ElevatedButton.icon(
               onPressed: () {},
               style: ElevatedButton.styleFrom(primary: Colors.blue),
@@ -94,4 +103,8 @@ class ClienteModal extends StatelessWidget {
       ),
     );
   }
+
+  _save() {}
+
+  _delete() {}
 }
