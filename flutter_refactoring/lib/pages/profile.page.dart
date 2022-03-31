@@ -12,7 +12,11 @@ class ProfilePage extends StatelessWidget {
         visibleActions: false,
       ),
       // drawer: const DrawerCustom(),
-      body: Container(),
+      body: _body(),
     );
+  }
+  
+  _body() {
+    return Container(); // Aqui você colocar seu Widget...
   }
 }
