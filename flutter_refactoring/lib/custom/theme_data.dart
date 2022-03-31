@@ -4,7 +4,7 @@ class ThemeDataCustom {
   static light() {
     return ThemeData(
       colorScheme: const ColorScheme(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         primary: Colors.redAccent,
         onPrimary: Colors.white,
         secondary: Colors.redAccent,
@@ -14,7 +14,10 @@ class ThemeDataCustom {
         background: Colors.redAccent,
         onBackground: Colors.white,
         surface: Colors.redAccent,
-        onSurface: Colors.redAccent,
+        onSurface: Colors.white,
+      ),
+      drawerTheme: const DrawerThemeData(
+        elevation: 0,
       ),
     );
   }

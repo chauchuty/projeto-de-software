@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
+import 'package:flutter_refactoring/widgets/drawer.custom.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -6,15 +8,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
-    );
-  }
-
-  _appBar() {
-    return AppBar(
-      centerTitle: true,
-      title: const Text('Home'),
-      elevation: 0,
+      appBar: const AppBarCustom(title: 'Home'),
+      drawer: const DrawerCustom(),
+      body: Container(),
     );
   }
 
