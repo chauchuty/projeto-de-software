@@ -10,16 +10,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: const AppBarCustom(title: 'Home'),
       drawer: const DrawerCustom(),
-      body: Container(),
+      body: _body(context),
     );
   }
 
-  _body() {
-    return SizedBox(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [],
-      ),
-    );
+  _body(context) {
+    return Container();
   }
 }
