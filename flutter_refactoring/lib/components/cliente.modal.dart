@@ -3,108 +3,93 @@ import 'package:flutter_refactoring/models/cliente.model.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
 
 class ClienteModal extends StatelessWidget {
-  final bool editMode;
-  final Cliente cliente;
+  final String title;
+  final String mode;
+  final Cliente? cliente;
   const ClienteModal({
     Key? key,
-    required this.cliente,
-    required this.editMode,
+    required this.title,
+    required this.mode,
+    this.cliente,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom(title: 'Cliente'),
-      // drawer: const DrawerCustom(),
+      appBar: AppBarCustom(
+        title: title,
+        visibleActions: false,
+      ),
       body: _body(context),
     );
   }
 
   _body(context) {
-    return Form(
-      child: Padding(
-        padding: const EdgeInsets.only(right: 20, left: 20),
-        child: ListView(
-          children: [
-            const SizedBox(height: 20),
-            Icon(editMode ? Icons.manage_accounts : Icons.account_circle,
-                size: 75),
-            !editMode
-                ? _textFormField(
-                    label: 'Identificador',
-                    icon: Icons.confirmation_number,
-                    value: cliente.id.toString(),
-                  )
-                : const SizedBox(),
-            _textFormField(
-              label: 'Nome',
-              icon: Icons.person,
-              value: cliente.nome,
-            ),
-            _textFormField(
-              label: 'Telefone',
-              icon: Icons.phone,
-              value: cliente.telefone,
-            ),
-            _textFormField(
-              label: 'Email',
-              icon: Icons.email,
-              value: cliente.email,
-            ),
-            editMode ? _actions(context) : const SizedBox()
-          ],
+    switch (mode) {
+      case 'create':
+        return _create(context);
+      case 'read':
+        return _read(context, cliente: cliente);
+      case 'update':
+        return _update(context, cliente: cliente);
+      default:
+    }
+  }
+
+  _create(context) {
+    return Text('create');
+  }
+
+  _read(context, {Cliente? cliente}) {
+    return ListView(
+      padding: const EdgeInsets.all(10),
+      children: [
+        const Icon(
+          Icons.account_circle,
+          size: 100,
         ),
+        _itemRead(cliente!.id.toString(), Icons.numbers),
+        _itemRead(cliente.nome, Icons.person),
+        _itemRead(cliente.telefone, Icons.phone),
+        _itemRead(cliente.email, Icons.email),
+      ],
+    );
+  }
+
+  _update(context, {Cliente? cliente}) {
+    return ListView(
+      padding: const EdgeInsets.all(10),
+      children: [
+        const Icon(
+          Icons.edit,
+          size: 100,
+        ),
+        _itemUpdate(cliente!.nome, Icons.person),
+        _itemUpdate(cliente.telefone, Icons.phone),
+        _itemUpdate(cliente.email, Icons.email),
+        const SizedBox(height: 10),
+        ElevatedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.update),
+          label: const Text('Salvar'),
+        )
+      ],
+    );
+  }
+
+  _itemRead(String title, IconData icon) {
+    return Card(
+      child: ListTile(
+        leading: Icon(icon),
+        title: Text(title),
       ),
     );
   }
 
-  _textFormField({
-    required String label,
-    required IconData icon,
-    required String value,
-  }) {
+  _itemUpdate(String title, IconData icon) {
     return TextFormField(
-      readOnly: !editMode,
-      enabled: editMode,
-      initialValue: value,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(10),
-        label: Text(label),
-        icon: Icon(icon),
-      ),
+      initialValue: title,
+      decoration: InputDecoration(icon: Icon(icon)),
     );
   }
-
-  _actions(context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Row(
-        children: [
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(primary: Colors.red),
-              icon: const Icon(Icons.delete),
-              label: const Text('Deletar'),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(primary: Colors.blue),
-              icon: const Icon(Icons.save),
-              label: const Text('Salvar'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  _save() {}
-
-  _delete() {}
 }

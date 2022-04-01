@@ -16,7 +16,7 @@ class ClientesPage extends StatelessWidget {
       appBar: const AppBarCustom(title: 'Clientes'),
       drawer: const DrawerCustom(),
       body: _body(context),
-      floatingActionButton: _floatingActionButton(),
+      floatingActionButton: _create(context),
     );
   }
 
@@ -33,14 +33,8 @@ class ClientesPage extends StatelessWidget {
   _listView(context, Cliente cliente) {
     return Card(
       child: ListTile(
-        onLongPress: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  ClienteModal(cliente: cliente, editMode: false),
-            ),
-          );
+        onTap: () {
+          _read(context, cliente);
         },
         leading: const Icon(
           Icons.account_box,
@@ -50,72 +44,95 @@ class ClientesPage extends StatelessWidget {
         subtitle: Text(cliente.email),
         trailing: Wrap(
           children: [
-            _actions(context, cliente),
+            _update(context, cliente),
+            _delete(context, cliente),
           ],
         ),
       ),
     );
   }
 
-  _floatingActionButton() {
+  _create(context) {
     return FloatingActionButton(
       onPressed: () {
-        // Add your onPressed code here!
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const ClienteModal(
+                  title: 'Cadastrar Cliente', mode: 'create')),
+        );
       },
       child: const Icon(Icons.person_add),
     );
   }
 
-  _actions(context, Cliente cliente) {
-    return IconButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  ClienteModal(cliente: cliente, editMode: true),
-            ),
-          );
-        },
-        icon: const Icon(Icons.edit),
-        splashRadius: 20);
+  _read(context, Cliente cliente) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ClienteModal(
+                title: 'Dados do Cliente',
+                mode: 'read',
+                cliente: cliente,
+              )),
+    );
   }
 
-  // _delete(context, Cliente cliente) {
-  //   IconButton(
-  //     onPressed: () {
-  //       showDialog(
-  //         context: context,
-  //         builder: (BuildContext context) {
-  //           return AlertDialog(
-  //             title: Text('Usuário: ${cliente.nome} (${cliente.id})'),
-  //             content: Wrap(
-  //               children: [
-  //                 Wrap(
-  //                   spacing: 10,
-  //                   children: [
-  //                     Icon(Icons.delete),
-  //                     Text('Deseja realmente deleta?'),
-  //                   ],
-  //                 ),
-  //               ],
-  //             ),
-  //             actions: [
-  //               ElevatedButton(
-  //                 onPressed: () {},
-  //                 child: Text('Cancelar'),
-  //               ),
-  //               ElevatedButton(
-  //                 onPressed: () {},
-  //                 child: Text('Deletar'),
-  //               ),
-  //             ],
-  //           );
-  //         },
-  //       );
-  //     },
-  //     icon: const Icon(Icons.delete),
-  //     splashRadius: 20,
-  //   );
+  _update(context, Cliente cliente) {
+    return IconButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ClienteModal(
+              title: 'Atualizar Cliente',
+              mode: 'update',
+              cliente: cliente,
+            ),
+          ),
+        );
+      },
+      icon: const Icon(Icons.edit),
+      splashRadius: 20,
+    );
+  }
 
+  _delete(context, Cliente cliente) {
+    return IconButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return _alertDialogDelete(cliente);
+          },
+        );
+      },
+      icon: const Icon(Icons.delete),
+      splashRadius: 20,
+    );
+  }
+
+  _alertDialogDelete(Cliente cliente) {
+    return AlertDialog(
+      title: Text(
+        '"${cliente.nome}" (#${cliente.id})',
+        textAlign: TextAlign.center,
+      ),
+      actions: [
+        TextButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.delete, color: Colors.grey),
+          label: const Text(
+            'Cancelar',
+            style: TextStyle(color: Colors.grey),
+          ),
+        ),
+        TextButton.icon(
+          onPressed: () {},
+          icon: Icon(Icons.delete),
+          label: Text('Deletar'),
+        ),
+      ],
+    );
+  }
 }
