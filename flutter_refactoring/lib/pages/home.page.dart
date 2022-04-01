@@ -15,6 +15,40 @@ class HomePage extends StatelessWidget {
   }
 
   _body(context) {
-    return Container();
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(30.0),
+          child: Text(
+            'Salão de Beleza - UTFPR',
+            style: TextStyle(fontSize: 30),
+          ),
+        ),
+        Row(
+          children: [
+            Expanded(child: _card('Agendamentos', 8, Icons.schedule)),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(child: _card('Serviços', 10, Icons.work)),
+            Expanded(child: _card('Clientes', 57, Icons.person)),
+          ],
+        )
+      ],
+    );
+  }
+
+  _card(String title, int qtd, IconData icon) {
+    return Card(
+        child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          leading: Icon(icon),
+          title: Text("$title: $qtd"),
+        ),
+      ],
+    ));
   }
 }

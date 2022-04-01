@@ -31,14 +31,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _body() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset('assets/images/logo.png'),
-        const SizedBox(height: 30),
-        _form(),
-      ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(top: 20),
+      child: Column(
+        children: [
+          Image.asset('assets/images/logo.png'),
+          _form(),
+        ],
+      ),
     );
   }
 

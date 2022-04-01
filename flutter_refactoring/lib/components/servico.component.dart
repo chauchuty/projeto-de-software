@@ -57,10 +57,10 @@ class _PacoteModalState extends State<ServicoComponent> {
         padding: const EdgeInsets.all(15),
         children: [
           const Icon(
-            Icons.work,
+            Icons.content_cut,
             size: 75,
           ),
-          _itemCreate('Nome *', Icons.work, _nomeC,
+          _itemCreate('Nome *', Icons.content_cut, _nomeC,
               validator: ValidateCustom.isFullName),
           _itemCreate('Valor', Icons.attach_money, _descricaoC),
           _itemCreate('Descrição', Icons.format_align_center, _valorC),

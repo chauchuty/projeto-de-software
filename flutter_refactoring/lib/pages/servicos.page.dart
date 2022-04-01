@@ -38,7 +38,7 @@ class ServicosPage extends StatelessWidget {
           _read(context, servico);
         },
         leading: const Icon(
-          Icons.account_box,
+          Icons.content_cut,
           size: 35,
         ),
         title: Text(servico.nome),
@@ -64,7 +64,7 @@ class ServicosPage extends StatelessWidget {
           ),
         );
       },
-      child: const Icon(Icons.person_add),
+      child: const Icon(Icons.add),
     );
   }
 

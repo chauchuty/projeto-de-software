@@ -39,7 +39,7 @@ class AgendamentosPage extends StatelessWidget {
           _read(context, agendamento);
         },
         leading: const Icon(
-          Icons.account_box,
+          Icons.calendar_month,
           size: 35,
         ),
         title: Text(agendamento.cliente.nome),
@@ -69,7 +69,7 @@ class AgendamentosPage extends StatelessWidget {
           ),
         );
       },
-      child: const Icon(Icons.person_add),
+      child: const Icon(Icons.add),
     );
   }
 
@@ -124,8 +124,8 @@ class AgendamentosPage extends StatelessWidget {
 
   _alertDialogDelete(context, Agendamento agendamento) {
     return AlertDialog(
-      title: Text(
-        '"${agendamento.descricao}" (#${agendamento.id})',
+      content: Text(
+        '"Agendamento de: \n\n${agendamento.cliente.nome} \nAgendamento: #${agendamento.id}',
         textAlign: TextAlign.center,
       ),
       actions: [

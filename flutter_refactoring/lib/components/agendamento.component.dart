@@ -61,7 +61,7 @@ class _AgendamentoModalState extends State<AgendamentoComponent> {
         padding: const EdgeInsets.all(15),
         children: [
           const Icon(
-            Icons.person_add,
+            Icons.calendar_month,
             size: 75,
           ),
           _itemDropButton(),
@@ -142,7 +142,7 @@ class _AgendamentoModalState extends State<AgendamentoComponent> {
       padding: const EdgeInsets.all(10),
       children: [
         const Icon(
-          Icons.manage_accounts,
+          Icons.content_cut,
           size: 75,
         ),
         _itemUpdate(agendamento!.descricao, Icons.person),
