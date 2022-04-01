@@ -31,15 +31,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _body() {
-    return SizedBox(
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(top: 20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
-            Icons.login,
-            color: Colors.redAccent,
-            size: 75,
-          ),
+          Image.asset('assets/images/logo.png'),
           _form(),
         ],
       ),
@@ -97,17 +93,13 @@ class _LoginPageState extends State<LoginPage> {
         if (_formKey.currentState!.validate()) {
           // Validação Provisória
           if (_userC.text == 'admin' && _passC.text == '010203') {
-            SnackBarCustom.feature(
-              context,
-              message: 'Logado com sucesso!',
-            );
+            SnackBarCustom.success(context, message: 'Logado com sucesso!');
 
             Navigator.pushNamed(context, '/home');
             return;
           }
           _passC.clear();
-          SnackBarCustom.feature(context,
-              message: 'Usuário ou senha inválido!');
+          SnackBarCustom.error(context, message: 'Usuário ou senha inválido!');
         }
       },
       child: const Text('Acessar'),

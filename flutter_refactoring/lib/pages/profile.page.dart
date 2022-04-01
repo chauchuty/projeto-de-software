@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
       body: _body(),
     );
   }
-  
+
   _body() {
     return Container(); // Aqui você colocar seu Widget...
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DrawerCustom extends StatelessWidget {
   const DrawerCustom({Key? key}) : super(key: key);
@@ -10,28 +11,64 @@ class DrawerCustom extends StatelessWidget {
       child: Drawer(
         child: ListView(
           children: [
-            _listTile(title: 'Home', icon: Icons.home),
-            _listTile(title: 'Agendamento', icon: Icons.calendar_month),
-            _listTile(title: 'Clientes', icon: Icons.people),
-            _listTile(title: 'Serviços', icon: Icons.work),
-            _listTile(title: 'Pacotes', icon: Icons.widgets),
-            _listTile(title: 'Financeiro', icon: Icons.account_balance),
-            _listTile(title: 'Sair', icon: Icons.exit_to_app),
+            _listTile(
+              context,
+              title: 'Home',
+              icon: Icons.home,
+              route: '/home',
+            ),
+            _listTile(
+              context,
+              title: 'Agendamento',
+              icon: Icons.calendar_month,
+              route: '/agendamento',
+            ),
+            _listTile(
+              context,
+              title: 'Clientes',
+              icon: Icons.people,
+              route: '/clientes',
+            ),
+            _listTile(
+              context,
+              title: 'Serviços',
+              icon: Icons.work,
+              route: '/servicos',
+            ),
+            _listTile(
+              context,
+              title: 'Pacotes',
+              icon: Icons.block,
+              route: '/pacotes',
+            ),
+            _listTile(context,
+                title: 'Financeiro', icon: Icons.block, route: '/financeiro'),
+            _listTile(
+              context,
+              title: 'Sair',
+              icon: Icons.exit_to_app,
+              route: '/exit',
+            ),
           ],
         ),
       ),
     );
   }
 
-  _listTile({
+  _listTile(
+    context, {
     required String title,
     required IconData icon,
+    required String route,
+    bool enable = true,
   }) {
     return ListTile(
+      enabled: enable,
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
-        print('Helo');
+        if (route == '/exit') SystemNavigator.pop();
+        Navigator.pushNamed(context, route);
       },
     );
   }
