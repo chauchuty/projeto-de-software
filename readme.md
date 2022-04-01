@@ -27,5 +27,5 @@ git clone https://github.com/chauchuty/projeto-de-software.git
 cd project-de-software
 flutter run
 ```
-
-[![N|Solid](./images/diagram.jpeg)]
+### Diagrama
+![N|Solid](./images/diagram.jpeg)
