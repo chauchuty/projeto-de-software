@@ -1,16 +1,14 @@
-import 'dart:convert';
-
 class Cliente {
   int? id;
   String nome;
-  String telefone;
-  String email;
+  String? telefone;
+  String? email;
 
   Cliente({
     this.id,
     required this.nome,
-    required this.telefone,
-    required this.email,
+    this.telefone,
+    this.email,
   });
 
   Map<String, dynamic> toMap() {
@@ -20,8 +18,12 @@ class Cliente {
       result.addAll({'id': id});
     }
     result.addAll({'nome': nome});
-    result.addAll({'telefone': telefone});
-    result.addAll({'email': email});
+    if (telefone != null) {
+      result.addAll({'telefone': telefone});
+    }
+    if (email != null) {
+      result.addAll({'email': email});
+    }
 
     return result;
   }
@@ -30,8 +32,8 @@ class Cliente {
     return Cliente(
       id: map['id']?.toInt(),
       nome: map['nome'] ?? '',
-      telefone: map['telefone'] ?? '',
-      email: map['email'] ?? '',
+      telefone: map['telefone'],
+      email: map['email'],
     );
   }
 }

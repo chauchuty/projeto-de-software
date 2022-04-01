@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_refactoring/components/cliente.modal.dart';
 import 'package:flutter_refactoring/models/cliente.model.dart';
 import 'package:flutter_refactoring/repositories/clientes.repository.dart';
+import 'package:flutter_refactoring/utilities/snackbar.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
 import 'package:flutter_refactoring/widgets/drawer.custom.dart';
 
@@ -41,7 +42,7 @@ class ClientesPage extends StatelessWidget {
           size: 35,
         ),
         title: Text(cliente.nome),
-        subtitle: Text(cliente.email),
+        subtitle: Text(cliente.email!),
         trailing: Wrap(
           children: [
             _update(context, cliente),
@@ -58,8 +59,9 @@ class ClientesPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => const ClienteModal(
-                  title: 'Cadastrar Cliente', mode: 'create')),
+            builder: (context) =>
+                const ClienteModal(title: 'Cadastrar Cliente', mode: 'create'),
+          ),
         );
       },
       child: const Icon(Icons.person_add),
@@ -70,11 +72,12 @@ class ClientesPage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => ClienteModal(
-                title: 'Dados do Cliente',
-                mode: 'read',
-                cliente: cliente,
-              )),
+        builder: (context) => ClienteModal(
+          title: 'Cliente',
+          mode: 'read',
+          cliente: cliente,
+        ),
+      ),
     );
   }
 
@@ -103,7 +106,7 @@ class ClientesPage extends StatelessWidget {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return _alertDialogDelete(cliente);
+            return _alertDialogDelete(context, cliente);
           },
         );
       },
@@ -112,7 +115,7 @@ class ClientesPage extends StatelessWidget {
     );
   }
 
-  _alertDialogDelete(Cliente cliente) {
+  _alertDialogDelete(context, Cliente cliente) {
     return AlertDialog(
       title: Text(
         '"${cliente.nome}" (#${cliente.id})',
@@ -120,7 +123,9 @@ class ClientesPage extends StatelessWidget {
       ),
       actions: [
         TextButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.delete, color: Colors.grey),
           label: const Text(
             'Cancelar',
@@ -128,9 +133,12 @@ class ClientesPage extends StatelessWidget {
           ),
         ),
         TextButton.icon(
-          onPressed: () {},
-          icon: Icon(Icons.delete),
-          label: Text('Deletar'),
+          onPressed: () {
+            SnackBarCustom.success(context, message: 'Deletado com sucesso!');
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.delete),
+          label: const Text('Deletar'),
         ),
       ],
     );
