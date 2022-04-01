@@ -2,7 +2,7 @@
 
 #### Integrantes:
   - Cesar Mauricio Chauchuty
-  - Jucinaldo Araujo
+  - Jucinaldo Araujo (RA-2296500)
   - Murilo  Szulha
   - Marcos Soek
 
