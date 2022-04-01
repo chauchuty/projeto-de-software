@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_refactoring/models/cliente.model.dart';
+import 'package:flutter_refactoring/models/servico.model.dart';
 import 'package:flutter_refactoring/utilities/snackbar.dart';
 import 'package:flutter_refactoring/utilities/validate.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
 
-class ClienteModal extends StatefulWidget {
+class ServicoModal extends StatefulWidget {
   // Settings
   final String title;
   final String mode;
-  final Cliente? cliente;
+  final Servico? servico;
 
-  const ClienteModal({
+  const ServicoModal({
     Key? key,
     required this.title,
     required this.mode,
-    this.cliente,
+    this.servico,
   }) : super(key: key);
 
   @override
-  State<ClienteModal> createState() => _ClienteModalState();
+  State<ServicoModal> createState() => _ClienteModalState();
 }
 
-class _ClienteModalState extends State<ClienteModal> {
+class _ClienteModalState extends State<ServicoModal> {
   final _formKey = GlobalKey<FormState>();
   final _nomeC = TextEditingController();
-  final _telefoneC = TextEditingController();
-  final _emailC = TextEditingController();
+  final _descricaoC = TextEditingController();
+  final _valorC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,9 @@ class _ClienteModalState extends State<ClienteModal> {
       case 'create':
         return _create(context);
       case 'read':
-        return _read(context, cliente: widget.cliente);
+        return _read(context, servico: widget.servico);
       case 'update':
-        return _update(context, cliente: widget.cliente);
+        return _update(context, servico: widget.servico);
       default:
     }
   }
@@ -57,13 +57,13 @@ class _ClienteModalState extends State<ClienteModal> {
         padding: const EdgeInsets.all(15),
         children: [
           const Icon(
-            Icons.person_add,
+            Icons.work,
             size: 75,
           ),
-          _itemCreate('Nome *', Icons.person, _nomeC,
+          _itemCreate('Nome *', Icons.work, _nomeC,
               validator: ValidateCustom.isFullName),
-          _itemCreate('Telefone', Icons.phone, _telefoneC),
-          _itemCreate('Email', Icons.email, _emailC),
+          _itemCreate('Valor', Icons.attach_money, _descricaoC),
+          _itemCreate('Descrição', Icons.format_align_center, _valorC),
           const SizedBox(height: 10),
           ElevatedButton.icon(
             onPressed: () {
@@ -84,7 +84,7 @@ class _ClienteModalState extends State<ClienteModal> {
     );
   }
 
-  _read(context, {Cliente? cliente}) {
+  _read(context, {Servico? servico}) {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: [
@@ -92,15 +92,15 @@ class _ClienteModalState extends State<ClienteModal> {
           Icons.account_circle,
           size: 75,
         ),
-        _itemRead(cliente!.id.toString(), Icons.numbers),
-        _itemRead(cliente.nome, Icons.person),
-        _itemRead(cliente.telefone, Icons.phone),
-        _itemRead(cliente.email, Icons.email),
+        _itemRead(servico!.id.toString(), Icons.numbers),
+        _itemRead(servico.nome, Icons.person),
+        // _itemRead(cliente.telefone, Icons.phone),
+        // _itemRead(cliente.email, Icons.email),
       ],
     );
   }
 
-  _update(context, {Cliente? cliente}) {
+  _update(context, {Servico? servico}) {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: [
@@ -108,9 +108,9 @@ class _ClienteModalState extends State<ClienteModal> {
           Icons.manage_accounts,
           size: 75,
         ),
-        _itemUpdate(cliente!.nome, Icons.person),
-        _itemUpdate(cliente.telefone, Icons.phone),
-        _itemUpdate(cliente.email, Icons.email),
+        _itemUpdate(servico!.nome, Icons.person),
+        // _itemUpdate(servico.telefone, Icons.phone),
+        // _itemUpdate(cliente.email, Icons.email),
         const SizedBox(height: 10),
         ElevatedButton.icon(
           onPressed: () {

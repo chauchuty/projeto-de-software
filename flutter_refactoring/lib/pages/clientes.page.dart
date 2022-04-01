@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_refactoring/components/cliente.modal.dart';
 import 'package:flutter_refactoring/models/cliente.model.dart';
-import 'package:flutter_refactoring/repositories/clientes.repository.dart';
+import 'package:flutter_refactoring/repositories/cliente.repository.dart';
 import 'package:flutter_refactoring/utilities/snackbar.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
 import 'package:flutter_refactoring/widgets/drawer.custom.dart';

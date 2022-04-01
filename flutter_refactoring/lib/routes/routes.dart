@@ -1,4 +1,4 @@
-import 'package:flutter_refactoring/pages/agendamento.page.dart';
+import 'package:flutter_refactoring/pages/agendamentos.page.dart';
 import 'package:flutter_refactoring/pages/clientes.page.dart';
 import 'package:flutter_refactoring/pages/financeiro.dart';
 import 'package:flutter_refactoring/pages/pacotes.page.dart';
@@ -15,9 +15,9 @@ class RoutesCustom {
       '/login': (context) => const LoginPage(),
       '/profile': (context) => const ProfilePage(),
       '/home': (context) => const HomePage(),
-      '/agendamento': (context) => const AgendamentoPage(),
+      '/agendamento': (context) => const AgendamentosPage(),
       '/clientes': (context) => ClientesPage(),
-      '/servicos': (context) => const ServicosPage(),
+      '/servicos': (context) => ServicosPage(),
       '/pacotes': (context) => const PacotesPage(),
       '/financeiro': (context) => const FinanceiroPage(),
     };
