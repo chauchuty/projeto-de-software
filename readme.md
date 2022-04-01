@@ -15,3 +15,17 @@
 - :white_check_mark: EStrutura e Padronização
 - :white_check_mark: Navegação entre Páginas
 - :white_check_mark: Interface Adequada
+
+
+### Comando de Instalação
+#### Executar os comandos abaixo sequencialmente:
+
+```
+git clone https://github.com/chauchuty/projeto-de-software.git
+```
+```
+cd project-de-software
+flutter run
+```
+### Diagrama
+![N|Solid](./images/diagram.jpeg)
