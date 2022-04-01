@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_refactoring/components/servico.modal.dart';
+import 'package:flutter_refactoring/components/servico.component.dart';
 import 'package:flutter_refactoring/models/servico.model.dart';
 import 'package:flutter_refactoring/repositories/servico.repository.dart';
 import 'package:flutter_refactoring/utilities/snackbar.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_refactoring/components/cliente.modal.dart';
+import 'package:flutter_refactoring/components/cliente.component.dart';
 import 'package:flutter_refactoring/models/cliente.model.dart';
 import 'package:flutter_refactoring/repositories/cliente.repository.dart';
 import 'package:flutter_refactoring/utilities/snackbar.dart';

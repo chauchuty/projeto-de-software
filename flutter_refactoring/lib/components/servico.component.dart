@@ -92,10 +92,9 @@ class _ClienteModalState extends State<ServicoModal> {
           Icons.account_circle,
           size: 75,
         ),
-        _itemRead(servico!.id.toString(), Icons.numbers),
-        _itemRead(servico.nome, Icons.person),
-        // _itemRead(cliente.telefone, Icons.phone),
-        // _itemRead(cliente.email, Icons.email),
+        _itemRead('id', Icons.numbers, servico!.id.toString()),
+        _itemRead('Serviço', Icons.work, servico.nome),
+        _itemRead('Descrição', Icons.description, servico.descricao),
       ],
     );
   }
@@ -108,9 +107,9 @@ class _ClienteModalState extends State<ServicoModal> {
           Icons.manage_accounts,
           size: 75,
         ),
-        _itemUpdate(servico!.nome, Icons.person),
-        // _itemUpdate(servico.telefone, Icons.phone),
-        // _itemUpdate(cliente.email, Icons.email),
+        _itemUpdate('Serviço', Icons.work, servico!.nome),
+        _itemUpdate('Valor', Icons.attach_money, servico.valor.toString()),
+        _itemUpdate('Descrição', Icons.description, servico.descricao),
         const SizedBox(height: 10),
         ElevatedButton.icon(
           onPressed: () {
@@ -150,7 +149,7 @@ class _ClienteModalState extends State<ServicoModal> {
     );
   }
 
-  _itemRead(String? title, IconData icon) {
+  _itemRead(String label, IconData icon, String? title) {
     return Card(
       child: ListTile(
         leading: Icon(icon),
@@ -159,10 +158,13 @@ class _ClienteModalState extends State<ServicoModal> {
     );
   }
 
-  _itemUpdate(String? title, IconData icon) {
+  _itemUpdate(String label, IconData icon, String? title) {
     return TextFormField(
       initialValue: title,
-      decoration: InputDecoration(icon: Icon(icon)),
+      decoration: InputDecoration(
+        icon: Icon(icon),
+        label: Text(label),
+      ),
     );
   }
 }

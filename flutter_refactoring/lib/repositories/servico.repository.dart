@@ -10,10 +10,22 @@ abstract class IServicoRepository {
 
 class ServicoRepository implements IServicoRepository {
   final List<Servico> servicos = [
-    Servico(id: 0, nome: 'Corte Curto', valor: 30.00),
-    Servico(id: 1, nome: 'Corte Longo', valor: 50.00),
-    Servico(id: 2, nome: 'Alisamento', valor: 60.00),
-    Servico(id: 3, nome: 'Hidratação', valor: 65.00),
+    Servico(
+        id: 0,
+        nome: 'Corte Curto',
+        descricao: 'Duração de 40 min',
+        valor: 30.00),
+    Servico(
+        id: 1,
+        nome: 'Corte Longo',
+        descricao: 'Duração de 1h20 min',
+        valor: 50.00),
+    Servico(id: 2, nome: 'Alisamento', descricao: 'Sem formol', valor: 60.00),
+    Servico(
+        id: 3,
+        nome: 'Hidratação',
+        descricao: 'Produtos boticário',
+        valor: 65.00),
   ];
 
   @override
