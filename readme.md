@@ -25,6 +25,7 @@ git clone https://github.com/chauchuty/projeto-de-software.git
 ```
 ```
 cd project-de-software
+cd flutter_refactoring
 flutter run
 ```
 ### Diagrama
