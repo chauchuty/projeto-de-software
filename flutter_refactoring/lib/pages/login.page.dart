@@ -31,18 +31,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _body() {
-    return SizedBox(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(
-            Icons.login,
-            color: Colors.redAccent,
-            size: 75,
-          ),
-          _form(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset('assets/images/logo.png'),
+        const SizedBox(height: 30),
+        _form(),
+      ],
     );
   }
 

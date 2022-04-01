@@ -4,13 +4,13 @@ import 'package:flutter_refactoring/utilities/snackbar.dart';
 import 'package:flutter_refactoring/utilities/validate.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
 
-class ServicoModal extends StatefulWidget {
+class ServicoComponent extends StatefulWidget {
   // Settings
   final String title;
   final String mode;
   final Servico? servico;
 
-  const ServicoModal({
+  const ServicoComponent({
     Key? key,
     required this.title,
     required this.mode,
@@ -18,10 +18,10 @@ class ServicoModal extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ServicoModal> createState() => _ClienteModalState();
+  State<ServicoComponent> createState() => _PacoteModalState();
 }
 
-class _ClienteModalState extends State<ServicoModal> {
+class _PacoteModalState extends State<ServicoComponent> {
   final _formKey = GlobalKey<FormState>();
   final _nomeC = TextEditingController();
   final _descricaoC = TextEditingController();
@@ -108,7 +108,8 @@ class _ClienteModalState extends State<ServicoModal> {
           size: 75,
         ),
         _itemUpdate('Serviço', Icons.work, servico!.nome),
-        _itemUpdate('Valor', Icons.attach_money, servico.valor.toString()),
+        _itemUpdate(
+            'Valor', Icons.attach_money, servico.valor.toStringAsFixed(2)),
         _itemUpdate('Descrição', Icons.description, servico.descricao),
         const SizedBox(height: 10),
         ElevatedButton.icon(

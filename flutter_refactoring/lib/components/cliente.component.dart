@@ -4,13 +4,13 @@ import 'package:flutter_refactoring/utilities/snackbar.dart';
 import 'package:flutter_refactoring/utilities/validate.dart';
 import 'package:flutter_refactoring/widgets/app.bar.custom.dart';
 
-class ClienteModal extends StatefulWidget {
+class ClienteComponent extends StatefulWidget {
   // Settings
   final String title;
   final String mode;
   final Cliente? cliente;
 
-  const ClienteModal({
+  const ClienteComponent({
     Key? key,
     required this.title,
     required this.mode,
@@ -18,10 +18,10 @@ class ClienteModal extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ClienteModal> createState() => _ClienteModalState();
+  State<ClienteComponent> createState() => _ClienteModalState();
 }
 
-class _ClienteModalState extends State<ClienteModal> {
+class _ClienteModalState extends State<ClienteComponent> {
   final _formKey = GlobalKey<FormState>();
   final _nomeC = TextEditingController();
   final _telefoneC = TextEditingController();
@@ -100,6 +100,15 @@ class _ClienteModalState extends State<ClienteModal> {
     );
   }
 
+  _itemRead(String? title, IconData icon) {
+    return Card(
+      child: ListTile(
+        leading: Icon(icon),
+        title: Text(title!),
+      ),
+    );
+  }
+
   _update(context, {Cliente? cliente}) {
     return ListView(
       padding: const EdgeInsets.all(10),
@@ -146,15 +155,6 @@ class _ClienteModalState extends State<ClienteModal> {
       decoration: InputDecoration(
         icon: Icon(icon),
         labelText: label,
-      ),
-    );
-  }
-
-  _itemRead(String? title, IconData icon) {
-    return Card(
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(title!),
       ),
     );
   }

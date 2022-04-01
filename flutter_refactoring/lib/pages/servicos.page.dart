@@ -59,8 +59,8 @@ class ServicosPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                const ServicoModal(title: 'Cadastrar Serviço', mode: 'create'),
+            builder: (context) => const ServicoComponent(
+                title: 'Cadastrar Serviço', mode: 'create'),
           ),
         );
       },
@@ -72,7 +72,7 @@ class ServicosPage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ServicoModal(
+        builder: (context) => ServicoComponent(
           title: 'Serviço',
           mode: 'read',
           servico: servico,
@@ -87,7 +87,7 @@ class ServicosPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ServicoModal(
+            builder: (context) => ServicoComponent(
               title: 'Atualizar Serviço',
               mode: 'update',
               servico: servico,

@@ -59,8 +59,8 @@ class ClientesPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                const ClienteModal(title: 'Cadastrar Cliente', mode: 'create'),
+            builder: (context) => const ClienteComponent(
+                title: 'Cadastrar Cliente', mode: 'create'),
           ),
         );
       },
@@ -72,7 +72,7 @@ class ClientesPage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ClienteModal(
+        builder: (context) => ClienteComponent(
           title: 'Cliente',
           mode: 'read',
           cliente: cliente,
@@ -87,7 +87,7 @@ class ClientesPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ClienteModal(
+            builder: (context) => ClienteComponent(
               title: 'Atualizar Cliente',
               mode: 'update',
               cliente: cliente,

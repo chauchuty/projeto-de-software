@@ -18,7 +18,8 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Text(title),
       elevation: 0,
-      actions: visibleActions ? _actions(context) : [],
+      actions: [],
+      // actions: !visibleActions ? _actions(context) : [],
     );
   }
 

@@ -38,13 +38,11 @@ class DrawerCustom extends StatelessWidget {
             _listTile(
               context,
               title: 'Pacotes',
-              icon: Icons.widgets,
+              icon: Icons.block,
               route: '/pacotes',
             ),
             _listTile(context,
-                title: 'Financeiro',
-                icon: Icons.account_balance,
-                route: '/financeiro'),
+                title: 'Financeiro', icon: Icons.block, route: '/financeiro'),
             _listTile(
               context,
               title: 'Sair',
@@ -62,8 +60,10 @@ class DrawerCustom extends StatelessWidget {
     required String title,
     required IconData icon,
     required String route,
+    bool enable = true,
   }) {
     return ListTile(
+      enabled: enable,
       leading: Icon(icon),
       title: Text(title),
       onTap: () {
