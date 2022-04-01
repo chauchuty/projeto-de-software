@@ -12,7 +12,7 @@
 - :white_check_mark: Apresentação do Projeto
 - :white_check_mark: Uso de Formulários
 - :white_check_mark: Validações e Feedback
-- :white_check_mark: EStrutura e Padronização
+- :white_check_mark: Estrutura e Padronização
 - :white_check_mark: Navegação entre Páginas
 - :white_check_mark: Interface Adequada
 
