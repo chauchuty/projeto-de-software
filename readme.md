@@ -28,5 +28,8 @@ cd project-de-software
 cd flutter_refactoring
 flutter run
 ```
-### Diagrama
+### MVC
 ![N|Solid](./images/diagram.jpeg)
+
+### User Flow
+![N|Solid](./images/user_flow.png)
