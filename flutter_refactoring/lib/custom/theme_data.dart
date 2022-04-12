@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class ThemeDataCustom {
   static light() {
     return ThemeData(
+      fontFamily: 'JosefinsSans',
       colorScheme: const ColorScheme(
-        brightness: Brightness.dark,
-        primary: Colors.redAccent,
-        onPrimary: Colors.white,
+        brightness: Brightness.light,
+        primary: Colors.white,
+        onPrimary: Color(0xFF222222),
         secondary: Colors.redAccent,
         onSecondary: Colors.white,
         error: Colors.redAccent,
