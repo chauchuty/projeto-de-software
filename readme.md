@@ -51,8 +51,6 @@ Table cliente as CLI {
   fk_convenio int
 }
 
-
-
 Table servico as SER {
   id int [pk, increment]
   nome varchar [not null]
@@ -68,8 +66,8 @@ Table agendamento_servico as AGE_SER {
 
 Table agendamento as AGE {
   id int [pk, increment]
-  data_inicio date [not null]
-  data_fim date [not null]
+  data_inicio datetime [not null]
+  data_fim datetime [not null]
   fk_cliente int [not null]
   fk_profissional int [not null]
 }
