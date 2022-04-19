@@ -35,6 +35,13 @@ Table profissional as PRO {
   endereco varchar [not null]
 }
 
+Table convenio as CON {
+  id int [pk, increment]
+  nome varchar [not null]
+  descricao varchar 
+  desconto decimal [not null]
+}
+
 Table cliente as CLI {
   id int [pk, increment]
   nome varchar [not null]
@@ -44,12 +51,7 @@ Table cliente as CLI {
   fk_convenio int
 }
 
-Table convenio as CON {
-  id int [pk, increment]
-  nome varchar [not null]
-  descricao varchar 
-  desconto decimal [not null]
-}
+
 
 Table servico as SER {
   id int [pk, increment]
@@ -59,25 +61,31 @@ Table servico as SER {
 }
 
 Table agendamento_servico as AGE_SER {
-  id int [pk, increment]
   fk_agendamento int [not null]
   fk_servico int [not null]
 }
+
 
 Table agendamento as AGE {
   id int [pk, increment]
   data_inicio date [not null]
   data_fim date [not null]
-  desconto decimal [default: 0]
   fk_cliente int [not null]
   fk_profissional int [not null]
-  fk_agendamento_servico int [not null]
 }
 
 Table pagamento as PAG {
   id int [pk, increment]
   valor double [not null]
+  desconto decimal [not null]
   status tinyint [default: 0]
   fk_agendamento int [not null]
 }
+
+Ref: CLI.fk_convenio > CON.id
+Ref: AGE_SER.fk_agendamento > AGE.id
+Ref: AGE.fk_cliente > CLI.id
+Ref: AGE.fk_profissional > PRO.id
+Ref: AGE_SER.fk_servico > SER.id
+Ref: PAG.fk_agendamento > AGE.id
 ```
