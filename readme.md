@@ -21,6 +21,7 @@ Desenvolver um sistema de gestão de salão de beleza, que  permita ao usuário 
 | 16/03/2022 | Definição das etapas do projeto  |
 | 16/03/2022 | Desenvolvimento do protótipo     |
 | 26/03/2022 | Desenvolvimento de caso de uso   |
+| 26/03/2022 | Desenvolvimento de database      |
 
 #### Database
 ```sql
