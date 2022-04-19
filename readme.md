@@ -1,4 +1,6 @@
-#### Programação de Dispositivos Móveis - UTFPR
+### Projeto de software - UTFPR
+
+#### Gestão de salão de beleza
 
 #### Integrantes:
   - Cesar Mauricio Chauchuty
@@ -6,86 +8,74 @@
   - Murilo  Szulha
   - Marcos Soek
 
+#### Objetivo
+Desenvolver um sistema de gestão de salão de beleza, que  permita ao usuário executar as operações CRUD de clientes, serviços e agendamentos.
 
-#### Parte I
-- :white_check_mark: Objetivo do Aplicativo
-- :white_check_mark: Apresentação do Projeto
-- :white_check_mark: Uso de Formulários
-- :white_check_mark: Validações e Feedback
-- :white_check_mark: Estrutura e Padronização
-- :white_check_mark: Navegação entre Páginas
-- :white_check_mark: Interface Adequada
+#### Cronograma
 
+| DATA       |             Descrição            |
+|------------|----------------------------------|
+| 07/03/2022 | Início do projeto                |
+| 07/04/2022 | Escolha da proposta              |
+| 07/04/2022 | Pesquisa da temática             |
+| 16/03/2022 | Definição das etapas do projeto  |
+| 16/03/2022 | Desenvolvimento do protótipo     |
+| 26/03/2022 | Desenvolvimento de caso de uso   |
 
-### Comando de Instalação
-#### Executar os comandos abaixo sequencialmente:
-
-```
-git clone https://github.com/chauchuty/projeto-de-software.git
-```
-```
-cd project-de-software
-cd flutter_refactoring
-flutter run
-```
-### MVC
-![N|Solid](./images/diagram.jpeg)
-
-### User Flow
-![N|Solid](./images/user_flow.png)
-
+#### Database
 ```sql
-Table servico as SER {
+Table profissional as PRO {
   id int [pk, increment]
   nome varchar [not null]
-  valor double [not null]
-  tempo_medio datetime [not null]
-}
-
-Table pacote as PAC {
-  id int [pk, increment]
-  nome varchar [not null]
-  perc_desconto double [not null]
-}
-
-Table servico_pacote as SPC {
-  id int [pk, increment]
-  fk_servico int
-  fk_pacote int
-}
-
-Table servico_profissional as SEP {
-  id int [pk, increment]
-  fk_profissional int
-  fk_servico int
-
+  data_nasc date [not null]
+  cpf varchar [not null, unique]
+  email varchar [unique]
+  telefone varchar [unique]
+  endereco varchar [not null]
 }
 
 Table cliente as CLI {
   id int [pk, increment]
-  nome varchar 
+  nome varchar [not null]
+  email varchar [unique]
+  telefone varchar [unique]
+  endereco varchar
+  fk_convenio int
 }
 
-Table profissional as PRO {
+Table convenio as CON {
   id int [pk, increment]
-  nome varchar 
-  categoria varchar
+  nome varchar [not null]
+  descricao varchar 
+  desconto decimal [not null]
+}
+
+Table servico as SER {
+  id int [pk, increment]
+  nome varchar [not null]
+  descricao varchar
+  valor double
+}
+
+Table agendamento_servico as AGE_SER {
+  id int [pk, increment]
+  fk_agendamento int [not null]
+  fk_servico int [not null]
 }
 
 Table agendamento as AGE {
   id int [pk, increment]
-  data_inicio datetime
-  data_final datetime
-  fk_cliente int
-  fk_servico int
-  fk_pacote int
-  status boolean [default: 0]
+  data_inicio date [not null]
+  data_fim date [not null]
+  fk_cliente int [not null]
+  fk_profissional int [not null]
+  fk_agendamento_servico int [not null]
 }
 
-Ref: SEP.fk_profissional > PRO.id 
-Ref: SEP.fk_servico > SER.id 
-Ref: SPC.fk_servico > SER.id 
-Ref: SPC.fk_pacote > PAC.id 
-Ref: AGE.fk_cliente > CLI.id 
-Ref: AGE.fk_pacote > PAC.id 
+Table pagamento as PAG {
+  id int [pk, increment]
+  valor double [not null]
+  status tinyint [default: 0]
+  fk_agendamento int [not null]
+}
 ```
