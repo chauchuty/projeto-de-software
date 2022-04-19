@@ -68,6 +68,7 @@ Table agendamento as AGE {
   id int [pk, increment]
   data_inicio date [not null]
   data_fim date [not null]
+  desconto decimal [default: 0]
   fk_cliente int [not null]
   fk_profissional int [not null]
   fk_agendamento_servico int [not null]
