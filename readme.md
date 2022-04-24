@@ -20,15 +20,15 @@ Desenvolver um sistema de gestão de salão de beleza, que  permita ao usuário 
 | 16/03/2022 | Definição das etapas do projeto  |
 | 16/03/2022 | Desenvolvimento do protótipo     |
 | 26/03/2022 | Desenvolvimento de caso de uso   |
-| 26/03/2022 | Desenvolvimento de database      |
 | 24/04/2022 | Finalização do protótipo         |
 
 #### Protótipo
 
-![alt text](./images/prototipo.png "Title")
+![alt text](https://i.imgur.com/IPreDX3.png "Title")
+
 
 #### Use Case
-![alt text](./images/usecase.jpeg "Title")
+![alt text](https://i.imgur.com/aF4gcdX.jpg "Title")
 
 #### Funcionalidades
 
@@ -39,3 +39,4 @@ Desenvolver um sistema de gestão de salão de beleza, que  permita ao usuário 
 - Gestão de Convênios
 - Gestão de Serviços
 - Consulta de Pagamentos
+- Configurações de conta
